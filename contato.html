@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Sartefy</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header class="container-fluid p-3 bg-info">
+      <nav class="navbar navbar-expand-lg bg-info">
+        <div class="container-fluid">
+          <i class="bi bi-cassette-fill text-light"></i>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="quem-somos.html">Quem Somos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="servicos.html">Nossos Serviços</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="contato.html">Contato</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Mais Opções
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Olá, Usuário!</a></li>
+                  <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
+                  <li><a class="dropdown-item" href="#">Alterar Senha</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Sair</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>      
+    </header>
+
+    <main class="container mt-5">
+        <h2 class="text-center">Entre em Contato</h2>
+        <p class="lead text-center">
+            Tem alguma dúvida ou sugestão? Preencha o formulário abaixo para entrar em contato conosco.
+        </p>
+
+        <!-- Formulário de Contato -->
+        <form id="contactForm" novalidate>
+            <div class="row">
+                <!-- Nome -->
+                <div class="col-md-6 mb-3">
+                    <label for="name" class="form-label">Nome Completo</label>
+                    <input type="text" class="form-control" id="name" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira seu nome completo.
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira um email válido.
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Assunto -->
+                <div class="col-md-6 mb-3">
+                    <label for="subject" class="form-label">Assunto</label>
+                    <input type="text" class="form-control" id="subject" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira o assunto.
+                    </div>
+                </div>
+
+                <!-- Mensagem -->
+                <div class="col-md-6 mb-3">
+                    <label for="message" class="form-label">Mensagem</label>
+                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                    <div class="invalid-feedback">
+                        Por favor, insira uma mensagem.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enviar -->
+            <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+        </form>
+
+        <hr class="my-5">
+
+        <!-- Informações de Contato -->
+        <h3>Informações de Contato</h3>
+        <p><strong>Email:</strong> contato@sartefy.com.br</p>
+        <p><strong>Telefone:</strong> (11) 1234-5678</p>
+        <p><strong>Endereço:</strong> Rua Fictícia, 123 - São Paulo, SP</p>
+
+        <!-- Google Map -->
+        <div class="my-4">
+            <h4>Encontre-nos no Mapa</h4>
+            <div id="map" style="width: 100%; height: 400px;"></div>
+        </div>
+    </main>
+
+    <footer class="container-fluid p-3 text-center bg-info lead mt-auto">
+      <p class="m-0">Gabrel Barboza Sarte &reg;</p>
+      <p class="m-0">Copyright &copy; 2025</p>
+      <p class="m-0">Todos os direitos reservados</p>
+  </footer>
+
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        // Validação do formulário
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })();
+
+        // Iniciar o mapa do Google Maps
+        function initMap() {
+            var location = { lat: -23.5505, lng: -46.6333 }; // Localização fictícia (São Paulo, SP)
+            var map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: location
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "Sartefy - Nossa Localização"
+            });
+        }
+    </script>
+
+    <!-- Carregar o Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
+
+</body>
+</html>
